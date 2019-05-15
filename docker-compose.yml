@@ -1,0 +1,50 @@
+service:
+  build: .
+  container_name: DigiccyService
+  ports:
+   - "8889:58480"
+  environment:
+   - FLASK_ENV=PRODUCTION
+   - SERVICE_NAME=DigiccyService
+   - SERVICE_CHECK_HTTP=/v1/api/digiccy_coin/health_check
+   - SERVICE_CHECK_INTERVAL=5s
+   - SERVICE_TAGS=urlprefix-/v1/api/digiccy_coin/
+
+   - CONFIG_REDIS_IPPORT=101.132.188.48:6479
+   - CONFIG_REDIS_PWD=G%E5qk1T
+
+   - CONFIG_MYSQL_IPPORT=101.132.188.48:4406
+   - CONFIG_MYSQL_USERNAME=root
+   - CONFIG_MYSQL_PASSWORD=v0iX0EEy8Ey51Cx0
+   - CONFIG_MYSQL_DATABASE=dapp_digiccy
+
+   - CONFIG_CONSUL_TOKEN=
+
+   - CONFIG_DECRUPT_KEY=kyCBHrg8cFJOOrXWyBBQw7sUww8EcEdi
+   - CONFIG_ENCRYPT_IV=IzLkAuX7WlhYBsjH
+
+   - CONFIG_NETWORK_ID=XIANDA_NET
+   - CONFIG_NETWORK_PASSPHRASE=xfin_core_network_v1.0.0 ; September 2018
+   - CONFIG_ASSETS_ISSUER=GBAPRZYI3DDFYEN3IO54DXVPWS4GCXFNUUOION5HIRTDMFQJ3QF7CO7M
+
+   - CONFIG_GETH_ETH_PASSPHRASE=PesN31iCqugSxdx7
+   - CONFIG_GETH_VRT_PASSPHRASE=LMnKroB77E6Uw2h7
+   - CONFIG_GETH_IPCHAIN_PASSPHRASE=OjgjaUien0TjQZhv
+   - CONFIG_GETH_ABS_PASSPHRASE=Iyyva3VY6AwWm8Pi
+   - CONFIG_GETH_YEC_PASSPHRASE=ZPjUTyj1Wtacmhgc
+   - CONFIG_GETH_VPC_PASSPHRASE=kuRLLjrgUSikRN2r
+
+   - CONFIG_GETH_USDT_PASSPHRASE=
+   - USDT_RPC_USER=xianda
+   - USDT_RPC_PWD=ABQOqmPZ0tr95f5Z
+
+
+
+   - SCHEDULER_ENABLED=True
+
+
+  volumes:
+   - "/home/xfin/digiccy_coin/logs/pyservice_log:/logs/pyservice_log"
+   - "/home/xfin/digiccy_coin/logs/segmentation_log:/logs/segmentation_log"
+  external_links:
+   - xconsul

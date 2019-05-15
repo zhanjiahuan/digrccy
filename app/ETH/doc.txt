@@ -1,0 +1,31 @@
+
+ETH官网
+https://etherscan.io/
+
+ETH交易查询API
+http://api.etherscan.io/api?module=account&action=txlist&address={address}&startblock=0&endblock=99999999&sort=desc&apikey={api_key}
+参数:
+    address:要查询的地址
+    startblock:开始区块数
+    endblock:结束区块数
+    apikey:在https://etherscan.io/注册账户的API-KEYS
+    sort:排序
+返回值字段说明:
+    status:请求状态 '1' ,成功
+    message:消息 'OK' ,成功
+    result:范围区块内的所有交易记录
+
+    from: 转出账户
+    to: 装入账户 注意:如果是转出ERC20代币,这里会是代币的合约地址
+    isError :转账是否异常, '0' 无异常
+    confirmations: 确认数,一般大于12
+    hash: 转账的hash
+    nonce:账户使用的nonce
+
+本地eth节点API(geth API)
+    秘钥导入账户
+    web3.personal.importRawKey(self,private_key, passphrase)
+        private_key:秘钥
+        passphrase:节点密码 默认''
+
+
